@@ -1,0 +1,21 @@
+[{
+    "user_first_name": "Brittcwaa",
+    "user_last_name": "Coll",
+    "advertiser_name": "Peterson, Moran and Velazquezxm",
+    "preferred_currency_code": "USD",
+    "industrial_classification_id": "1",
+    "company_address": {
+      "address_1": "59569 Douglas Street Suite 835",
+      "address_2": "town",
+      "city": "Randallport",
+      "zipcode": 14373,
+      "state": "LA",
+      "province": "london",
+      "country": "USA"
+    },
+    "client_business_type": "ADERTISER",
+    "agree_terms_of_service": true,
+    "is_marketingEmail": true,
+    "user_email": "ronaldcastillcdeza@example.com",
+    "site_url": "https://jimenezq-sloaxa.com/"
+  }]

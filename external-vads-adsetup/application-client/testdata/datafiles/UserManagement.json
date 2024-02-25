@@ -1,0 +1,1338 @@
+{
+    "Id": "MakeItFree-API-TEST",
+    "name": "MakeItFree User Management Automation Tests",
+    "type": "FUNCTIONAL",
+    "testList": [
+      {
+        "test_name": "Validate User Add the new user for admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name":"User Creates the Payload for add new admin user",
+            "args": [
+              {
+                "user_email": "manjeet.yadav@impressico.com",
+                "user_role_id": "6",
+                "user_first_name": "manjeet",
+                "user_last_name": "yadav",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User Adds the new admin user",
+            "args": [
+              "/v1/admin/add/user",
+              "200",
+              "adds-new-user.json",
+              "success"
+            ]
+          },
+          {
+            "name": "User set the Variables for add admin user",
+            "args": ["adds-new-user.json"]
+          }
+        ]
+      },
+      {
+        "test_name": "User not Allowed to Register with duplicate data as new user for admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "message": "user already exist"
+              }
+            ]
+          },
+          {
+            "name":"User Creates the Payload",
+            "args": [
+              {
+                "user_email": "sikandragzp123@gmail.com",
+                "user_role_id": "13",
+                "user_first_name": "Demo",
+                "user_last_name": "Testme",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User Adds the new user",
+            "args": [
+              "/v1/admin/add/user",
+              "400",
+              "message"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User not Allowed to Register by removing mandatory field as new user for admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "message": "user already exist"
+              }
+            ]
+          },
+          {
+            "name":"User Creates the Payload",
+            "args": [
+              {
+                "user_role_id": "13",
+                "user_first_name": "Demo",
+                "user_last_name": "Testme",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User Adds the new user",
+            "args": [
+              "/v1/admin/add/user",
+              "400",
+              "message"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User not Allowed to Register by giving incorrect field data as new user for admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "message": "user already exist"
+              }
+            ]
+          },
+          {
+            "name":"User Creates the Payload",
+            "args": [
+              {
+                "user_email": "j",
+                "user_role_id": "13",
+                "user_first_name": "Demo4",
+                "user_last_name": "Testme",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User Adds the new user",
+            "args": [
+              "/v1/admin/add/user",
+              "400",
+              "message"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User Verifies email as admin User for new user",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "is_verified": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "fcd33bd9-5b8f-4772-8ff5-e4f683e40e58",
+                "uid": "d8e313d6-0468-44ce-9b58-f7bc8e2ef842",
+                "cid": "d8e313d6-0468-44ce-9b58-f7bc8e2ef842"
+              }
+            ]
+          },
+          {
+            "name": "User Verifies email as Admin User",
+            "args": [
+              "/v1/admin/verify",
+              "200",
+              "is_verified"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User not allowed to Verify email as admin User for new user by passing duplicate data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "is_verified": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "725762e8-5947-43cc-8b2a-abf856ec1ac3",
+                "uid": "fd6f7544-80ba-4d2f-b8f0-7857cfc111e2",
+                "cid": "3417c0bd-b364-4924-834d-9180d94b8d03"
+              }
+            ]
+          },
+          {
+            "name": "User Verifies email as Admin User",
+            "args": [
+              "/v1/admin/verify",
+              "404",
+              "is_verified"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User not allowed to Verify email as admin User for new user by removing mandatory field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "failure_code": "RECORD_NOT_FOUND"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "uid": "fd6f7544-80ba-4d2f-b8f0-7857cfc111e2",
+                "cid": "3417c0bd-b364-4924-834d-9180d94b8d03"
+              }
+            ]
+          },
+          {
+            "name": "User Verifies email as Admin User",
+            "args": [
+              "/v1/admin/verify",
+              "404",
+              "failure_code"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User not allowed to Verify email as admin User for new user by giving incorrect value in mandatory field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "failure_code": "RECORD_NOT_FOUND"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "String",
+                "uid": "d8e313d6-0468-44ce-9b58-f7bc8e2ef842",
+                "cid": "d8e313d6-0468-44ce-9b58-f7bc8e2ef842"
+              }
+            ]
+          },
+          {
+            "name": "User Verifies email as Admin User",
+            "args": [
+              "/v1/admin/verify",
+              "404",
+              "failure_code"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user set the password for new account For Admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "6361a5a0-06d3-4a9f-aeb2-4f9649cecd0e",
+                "password": "Impressico@12345",
+                "user_id": "9d2f363e-8850-4b33-b8a9-3954dc6c0a4d",
+                "context": "SET_PASSWORD"
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/auth/admin/set/password",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user set the password for an account For Admin by giving the duplicate data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [ 
+              {
+                "message": "token expired"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "6361a5a0-06d3-4a9f-aeb2-4f9649cecd0e",
+                "password": "Impressico@12345",
+                "user_id": "9d2f363e-8850-4b33-b8a9-3954dc6c0a4d",
+                "context": "SET_PASSWORD"
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/auth/admin/set/password",
+              "200",
+              "message"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user set the password for an account For Admin by Removing the mendatory field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [ 
+              {
+                "failure_code": "RECORD_NOT_FOUND"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "6361a5a0-06d3-4a9f-aeb2-4f9649cecd0e",
+                "user_id": "9d2f363e-8850-4b33-b8a9-3954dc6c0a4d",
+                "context": "SET_PASSWORD"
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/auth/admin/set/password",
+              "404",
+              "failure_code"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user set the password for an account For Admin by Removing the value of the key",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [ 
+              {
+                "failure_code": "RECORD_NOT_FOUND"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "token": "6361a5a0-06d3-4a9f-aeb2-4f9649cecd0e",
+                "password": "Impressico@12345",
+                "user_id": "",
+                "context": "SET_PASSWORD"
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/auth/admin/set/password",
+              "404",
+              "failure_code"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user set the password for new account as Admin using ID",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "password": "Test@12345"
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/v1/admin/155eccf0-dc09-4eb7-bdfb-fe2c13486062/set/password",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "validate User should be not be able to set password for new account as Admin using ID with duplicate data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "password": "Test@12345"
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/v1/admin/155eccf0-dc09-4eb7-bdfb-fe2c13486062/set/password",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Users cannot set passwords for new accounts as Admin using IDs without providing mandatory data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Not Found"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/v1/admin/155eccf0-dc09-4eb7-bdfb-fe2c13486062/set/password",
+              "404",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User cannot set the password for new account as Admin using ID by giving incorrect value for key field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Not Found"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "password": true
+              }
+            ]
+          },
+          {
+            "name": "User Set the password for Admin new account",
+            "args": [
+              "/v1/admin/155eccf0-dc09-4eb7-bdfb-fe2c13486062/set/password",
+              "200",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "As a MIF Admin user I should able to signin",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+              "user_name": "manjeet.yadav@impressico.com",
+              "password": "Test@12345"
+              }
+            ]
+          },
+          {
+            "name": "User Logs into the existing account for admin",
+            "args": [
+              "/auth/admin/login",
+              "200",
+              "admin-login-existing-account.json"
+            ]
+          },
+          {
+            "name": "User set the Variables for add admin user",
+            "args": ["admin-login-existing-account.json"]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User Login to the registered account via Admin by removing mandatory field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "title": "Bad Request"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+              "user_name": "biswajit.jati@impressico.com"
+              }
+            ]
+          },
+          {
+            "name": "User Logs into the existing account",
+            "args": [
+              "/auth/admin/login",
+              "400",
+              "title"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User Login to the registered account via Admin by giving incorrect value for key field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "title": "Not Authorised to access this resource"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+              "user_name": "abc",
+              "password": "Test@12345"
+              }
+            ]
+          },
+          {
+            "name": "User Logs into the existing account",
+            "args": [
+              "/auth/admin/login",
+              "401",
+              "title"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "As a MIF Admin user I am able to change the existing password.",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "oldPassword": "Test@12345",
+                "newPassword": "Impressico@123"
+              }
+            ]
+          },
+          {
+            "name": "User changes the password for admin using ID",
+            "args": [
+              "200",
+              "success",
+              "admin-change-password.json"
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "oldPassword": "Impressico@123",
+                "newPassword": "Test@12345"
+              }
+            ]
+          },
+          {
+            "name": "User changes the password for admin using ID",
+            "args": [
+              "200",
+              "success",
+              "admin-change-password.json"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User change the password for Admin by providing duplicate data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "failure_code": "INVALID_OLD_PASSWORD"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "oldPassword": "Test@12345",
+                "newPassword": "Impressico@123"
+              }
+            ]
+          },
+          {
+            "name": "User changes the password for admin using ID",
+            "args": [
+              "/v1/admin/user/bc9a6a16-113e-435c-a350-a30f331ba403/changepassword",
+              "200",
+              "failure_code"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User change the password for Admin by removing mandatory",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Internal Server Error"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "newPassword": "Impressico@123"
+              }
+            ]
+          },
+          {
+            "name": "User changes the password for admin using ID",
+            "args": [
+              "/v1/admin/user/bc9a6a16-113e-435c-a350-a30f331ba403/changepassword",
+              "200",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User connot change the password for admin by giving incorrect value for key field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Internal Server Error"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "oldPassword": true,
+                "newPassword": "Impressico@123"
+              }
+            ]
+          },
+          {
+            "name": "User changes the password for admin using ID",
+            "args": [
+              "/v1/admin/user/bc9a6a16-113e-435c-a350-a30f331ba403/changepassword",
+              "200",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user Re-set the password For Admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "email": "manjeet.yadav@impressico.com"
+              }
+            ]
+          },
+          {
+            "name": "User Reset the Password for Admin",
+            "args": [
+              "/v1/admin/passwordreset",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user connot be able to Re-set the password For Admin by providing duplicate",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "email": "manjeet.yadav@impressico.com"
+              }
+            ]
+          },
+          {
+            "name": "User Reset the Password for Admin",
+            "args": [
+              "/v1/admin/passwordreset",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user connot be able to Re-set the password For Admin by removing mandatory field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Internal Server Error"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                
+              }
+            ]
+          },
+          {
+            "name": "User Reset the Password for Admin",
+            "args": [
+              "/v1/admin/passwordreset",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user Re-set the password For Admin by giving incorrect value for key",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Internal Server Error"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "email": false
+              }
+            ]
+          },
+          {
+            "name": "User Reset the Password for Admin",
+            "args": [
+              "/v1/admin/passwordreset",
+              "200",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Admin able to Retrieve all advertiser users data",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User GET all existing user",
+            "args": [
+              "/v1/admin/advertiser/advertisers?ps=200&pn=1",
+              "200",
+              "get-all-admin-advertisers-users.json"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Admin able to Retrieve all publishers users data",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User GET all existing user",
+            "args": [
+              "/v1/admin/publisher/publishers?ps=20&pn=1",
+              "200",
+              "get-all-admin-publisher-user.json"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User able to Retrieve all the advertiser and publisher user details",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User GET all existing user",
+            "args": [
+              "/v1/admin/users?ps=20&pn=1",
+              "200",
+              "get-all-admin-users.json"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "As a MIF Admin I should able to update the existing users data by user ID",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "user_email": "manjeet.yadav@impressico.com",
+                "user_role_id": 6,
+                "user_first_name": "manjeet",
+                "user_last_name": "yadav"
+              }
+            ]
+          },
+          {
+            "name": "User updates an Existing data As Admin",
+            "args": [
+              "200",
+              "success",
+              "update-admin-user.json"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User Update the Existing user data with user ID As Admin by providing duplicate data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "user_email": null,
+                "user_role_id": 7,
+                "user_first_name": "",
+                "user_last_name": "",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User updates an Existing data As Admin",
+            "args": [
+              "/v1/admin/user/bc9a6a16-113e-435c-a350-a30f331ba403",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User connot Update the Existing user data with user ID As Admin removing mandatory field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Internal Server Error"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "user_role_id": 7,
+                "user_first_name": "",
+                "user_last_name": "",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User updates an Existing data As Admin",
+            "args": [
+              "/v1/admin/user/bc9a6a16-113e-435c-a350-a30f331ba403",
+              "401",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "User connot Update the Existing user data by user ID As Admin by giving incorrect value for key field",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Internal Server Error"
+              }
+            ]
+          },
+          {
+            "name": "User Creates the Payload",
+            "args": [
+              {
+                "user_email": null,
+                "user_role_id": 7,
+                "user_first_name": "",
+                "user_last_name": "",
+                "platform_id": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User updates an Existing data As Admin",
+            "args": [
+              "/v1/admin/user/bc9a6a16-113e-435c-a350-a30f331ba403",
+              "500",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate User Deletes user data by ID As Admin",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Deletes the existing users data as Admin",
+            "args": [
+              "/v1/admin/user/82584993-b2c5-415b-a6be-cf2038e45011",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "As a MIF Admin user I should able to sign out",
+        "testRunEnabled": true,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "success": true
+              }
+            ]
+          },
+          {
+            "name": "User Logout from an Application",
+            "args": [
+              "/v1/admin/logout",
+              "200",
+              "success"
+            ]
+          }
+        ]
+      },
+      {
+        "test_name": "Validate user Logout from the Admin account by providing duplicate data",
+        "testRunEnabled": false,
+        "keywords": [
+          {
+            "name": "User Validate the Expected data",
+            "args": [
+              {
+                "error": "Access Denied"
+              }
+            ]
+          },
+          {
+            "name": "User Logout from an Application",
+            "args": [
+              "/v1/admin/logout",
+              "401",
+              "error"
+            ]
+          }
+        ]
+      },
+      {
+      "test_name": "Validate User Register to Advertiser/Publisher as new user",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+              "success": true
+            }
+          ]
+        },
+        {
+          "name":"User Creates the Payload",
+          "args": [
+            {
+              "user_email": "manjeet.yadav@impressico.com",
+              "user_first_name": "adidas",
+              "user_last_name": "adidas",
+              "advertiser_name": "string",
+              "site_url": "www.adidas.com",
+              "client_business_type": "ADERTISER",
+              "is_marketingEmail": true
+            }
+          ]
+        },
+        {
+          "name": "User Resgister to an Application",
+          "args": [
+            "/v1/advertiser/register",
+            "200",
+            "success"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Validate User Verifies via email as Advertiser/Publisher User for new user",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "User Creates the Payload",
+          "args": [
+            {
+              "token": "string",
+              "uid": "string",
+              "cid": "string"
+            }
+          ]
+        },
+        {
+          "name": "User Verifies email as Admin User",
+          "args": [
+            "/v1/advertiser/verify",
+            "200",
+            "success"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Validate user set the password for new account as Advertiser/Publisher",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "User Creates the Payload",
+          "args": [
+            {
+              "token": "string",
+              "password": "string",
+              "user_id": "string",
+              "site_context": "ADERTISER",
+              "context": "SET_PASSWORD"
+            }
+          ]
+        },
+        {
+          "name": "User Verifies email as Admin User",
+          "args": [
+            "/v1/umgmt/set/password",
+            "200",
+            "success"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Validate user Re-set the password For Advertiser/Publisher",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "User Creates the Payload",
+          "args": [
+            {
+                "email": "manjeet.yadav@impressico.com",
+                "site_context": "ADVERTISER"
+            }
+          ]
+        },
+        {
+          "name": "User Verifies email as Admin User",
+          "args": [
+            "/v1/umgmt/user/passwordreset",
+            "200",
+            "success"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Validate user change the password for Advertiser/Publisher",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "User Creates the Payload",
+          "args": [
+            {
+              "oldPassword": "Impressico@123",
+              "newPassword": "Prince@123"
+            }
+          ]
+        },
+        {
+          "name": "User Verifies email as Admin User",
+          "args": [
+            "/v1/umgmt/user/fd6f7544-80ba-4d2f-b8f0-7857cfc111e2/changepassword",
+            "200",
+            "success"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Validate User Login to the registered account for Advertiser/Publisher",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Creates the Payload",
+          "args": [
+            {
+            "user_name": "manjeet.yadav@impressico.com",
+            "password": "Impressico@123",
+            "site_context": "ADVERTISER"
+            }
+          ]
+        },
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+            "context": "ADVERTISER",
+            "name": "coca cola",
+            "advertiser_name": "coke",
+            "role": {
+              "id": "8",
+              "user_role": "ADVERTISER_ACCOUNT_AGENT"
+              }
+            }
+          ]
+        },
+        {
+          "name": "User Logs into the existing account",
+          "args": [
+            "/auth/login",
+            "200"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Validate user Logout from the Advertiser/Publisher",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Validate the Expected data",
+          "args": [
+            {
+              "success": true
+            }
+          ]
+        },
+        {
+          "name": "User Logout from an Application",
+          "args": [
+            "/v1/umgmt/logout",
+            "200",
+            {
+              "Authorization": "Bearer $2a$10$zuQyhZyafc94j8gvBz8i3.nNBCUF6k.DvcUN293StG.gQEbgDCtca"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

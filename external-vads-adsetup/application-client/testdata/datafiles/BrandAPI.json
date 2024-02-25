@@ -1,0 +1,118 @@
+{
+  "Id": "MakeItFree-API-TEST",
+  "name": "MakeItFree Brand Automation Tests",
+  "type": "FUNCTIONAL",
+  "testList": [
+    {
+      "test_name": "User able to Retrieve all the brand data",
+      "testRunEnabled": true,
+      "keywords": [
+        {
+          "name": "GET all existing user for advertiser",
+          "args": [
+            "/v1/cms/brands?ps=2000&pn=1",
+            "200",
+            "get-all-brands.json"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "User able to  Creates the brand data",
+      "testRunEnabled": true,
+      "keywords": [
+        {
+          "name": "User Creates the Payload for Brand",
+          "args": [
+            {
+              "name": "zylum sell",
+              "tagline": "centric company",
+              "popularity_score": "8",
+              "country_of_origin_code": "US",
+              "identity_logo_url": "www.zylumsell.com",
+              "parent_company_name": "zylum",
+              "related_tags": "#centric company",
+              "industry_classification_id": "1"
+            }
+          ]
+        },
+        {
+          "name": "User Add the new Brand data for advertiser",
+          "args": [
+            "/v1/cms/brand",
+            "201",
+            "create-brand-data.json"
+          ]
+        },
+        {
+          "name": "User set the Variables for brand",
+          "args": ["create-brand-data.json"]
+        }
+      ]
+    },
+    {
+      "test_name": "User able to Retrieve the brand data by ID",
+      "testRunEnabled": true,
+      "keywords": [
+        {
+          "name": "User get existing brand data by ID",
+          "args": [
+            "200",
+            "get-brand-by-id.json"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "Upload all the brand data",
+      "testRunEnabled": false,
+      "keywords": [
+        {
+          "name": "User Creates the Payload from CSV and upload",
+          "args": [
+            {
+              "name": "",
+              "tagline": "Never Stop Carhartt",
+              "popularity_score": "8",
+              "country_of_origin_code": "US",
+              "identity_logo_url": "www.Carhartt.com",
+              "parent_company_name": "Carhartt",
+              "related_tags": "#Carhartt",
+              "industry_classification_id": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "User able to Update the Existing brand data by ID",
+      "testRunEnabled": true,
+      "keywords": [
+        {
+          "name": "User Creates the Payload for Brand update",
+          "args": []
+        },
+        {
+          "name": "User updates the Existing brands data",
+          "args": [
+            "200",
+            "update-brand-API.json"
+          ]
+        }
+      ]
+    },
+    {
+      "test_name": "User able to Deletes the brand data by ID",
+      "testRunEnabled": true,
+      "keywords": [
+        {
+          "name": "User Deletes an Existing data for brands",
+          "args": [
+            "200",
+            "delete-brand.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "generated_path": "application-client/output/generated/",
+  "generated_path_prefix": "_output-suite-run",
+  "SignInTest":{
+    "output_path_prefix" : "sign_in",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": ["SigninPage.py","SignupPage.py"],
+    "test_setups":{
+      "suite_setup":{ "name": "Log","args": ["Inside suite set-up"]},
+      "test_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+      "test_teardown":{ "name": "Capture Screen Shots AND Close Browser","args": []},
+      "suite_teardown":{ "name": "Close All Browsers","args": []}
+  }
+  },
+  "LandingTest":{
+    "output_path_prefix": "landing_pages",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": [],
+    "test_setups":{
+    "suite_setup":{ "name": "Log","args": ["suite setup"]},
+    "test_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+    "test_teardown":{ "name": "Capture Screen Shots AND Close Browser","args": []},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  },
+  "ShowPageCommentModule":{
+    "output_path_prefix": "show_page_comment_module",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": ["VadsPage.py","ShowPage.py"],
+    "test_setups":{
+    "suite_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+    "test_setup":{ "name": "User Login to an Application","args": ["rajala.srinivas23392@gmail.com","India@123"]},
+    "test_teardown":{ "name": "Sign Out with Current User","args": []},
+    "suite_teardown":{ "name": "Close All Browsers","args": []}
+  }
+  },
+  "ShowPageFeatures":{
+    "output_path_prefix": "show_page_features",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": ["ShowPage.py"],
+    "test_setups":{
+    "suite_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+    "test_setup":{ "name": "User Login to an Application","args": ["rajala.srinivas23392@gmail.com","India@123"]},
+    "test_teardown":{ "name": "Sign Out with Current User","args": []},
+    "suite_teardown":{ "name": "Close All Browsers","args": []}
+  }
+  },
+    "PageHealthValidation":{
+    "output_path_prefix" : "Page_Urls",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": ["HomePage.py"],
+    "test_setups":{
+    "suite_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+    "test_setup":{ "name": "Log","args": ["Inside test set-up"]},
+    "test_teardown":{ "name": "Log","args": ["Test tear down"]},
+    "suite_teardown":{ "name": "Close All Browsers","args": []}
+  }
+  },
+  "final_result": {
+    "output_path": "output/",
+    "file_name": "final"
+  },
+  "HomePageTest":{
+    "output_path_prefix" : "home_page",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": ["HomePage.py"],
+    "test_setups":{
+    "suite_setup":{ "name": "Log","args": ["suite setup"]},
+    "test_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+    "test_teardown":{ "name": "Capture Screen Shots AND Close Browser","args": []},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  },
+
+  "ShowPageTest":{
+    "output_path_prefix" : "show_page",
+    "dependent_module": ["../../modules/web/modules.robot"],
+    "dependent_library": ["ShowPage.py"],
+    "test_setups":{
+    "suite_setup":{ "name": "open browser and Load Required Page Objects","args": []},
+    "test_setup":{ "name": "User Login to an Application","args": ["rajala.srinivas23392@gmail.com","India@123"]},
+    "test_teardown":{ "name": "Sign Out with Current User","args": []},
+    "suite_teardown":{ "name": "Close All Browsers","args": []}
+  }
+  },
+
+  "BrandAPI":{
+    "output_path_prefix" : "BrandAPI",
+    "dependent_module": ["../../modules/api/apimodule.robot"],
+    "dependent_library": [],
+    "test_setups":{
+      "suite_setup":{  "name": "User Login and get the token",
+      "args": ["/auth/admin/login",
+          {
+          "user_name": "mifadmin@makeitfree.com",
+          "password": "Test@12345"
+          }
+        ]},
+    "test_setup":{ "name": "Log","args": ["Inside test set-up"]},
+    "test_teardown":{ "name": "Log","args": ["Test tear down"]},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  },
+
+  "UserManagement":{
+    "output_path_prefix" : "UserManagement",
+    "dependent_module": ["../../modules/api/apimodule.robot"],
+    "dependent_library": [],
+    "test_setups":{
+    "suite_setup":{  "name": "User Login and get the token",
+      "args": ["/auth/admin/login",
+          {
+          "user_name": "manjeet.yadav@impressico.com",
+          "password": "Test@12345"
+          }
+        ]},
+    "test_setup":{ "name": "Log","args": ["Inside test set-up"]},
+    "test_teardown":{ "name": "Log","args": ["Test tear down"]},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  },
+   "AdminAdvertiser":{
+    "output_path_prefix" : "AdminAdvertiser",
+    "dependent_module": ["../../modules/api/apimodule.robot"],
+    "dependent_library": [],
+    "test_setups":{
+    "suite_setup":{  "name": "User Login and get the token",
+      "args": ["/auth/admin/login",
+          {
+          "user_name": "mifadmin@makeitfree.com",
+          "password": "Test@12345"
+          }
+        ]},
+    "test_setup":{ "name": "Log","args": ["Inside test set-up"]},
+    "test_teardown":{ "name": "Log","args": ["Test tear down"]},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  },
+  "AdminPublisher":{
+    "output_path_prefix" : "AdminPublisher",
+    "dependent_module": ["../../modules/api/apimodule.robot"],
+    "dependent_library": [],
+    "test_setups":{
+    "suite_setup":{  "name": "User Login and get the token",
+      "args": ["/auth/admin/login",
+          {
+          "user_name": "mifadmin@makeitfree.com",
+          "password": "Test@12345"
+          }
+        ]},
+    "test_setup":{ "name": "Log","args": ["Inside test set-up"]},
+    "test_teardown":{ "name": "Log","args": ["Test tear down"]},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  },
+  "AdminReports":{
+    "output_path_prefix" : "AdminReports",
+    "dependent_module": ["../../modules/api/apimodule.robot"],
+    "dependent_library": [],
+    "test_setups":{
+    "suite_setup":{  "name": "User Login and get the token",
+      "args": ["/auth/admin/login",
+          {
+          "user_name": "mifadmin@makeitfree.com",
+          "password": "Test@12345"
+          }
+        ]},
+    "test_setup":{ "name": "Log","args": ["Inside test set-up"]},
+    "test_teardown":{ "name": "Log","args": ["Test tear down"]},
+    "suite_teardown":{ "name": "Log","args": ["Inside suite teardown"]}
+  }
+  }
+}

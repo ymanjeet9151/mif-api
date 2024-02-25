@@ -1,0 +1,32 @@
+[{
+  "advertiserId": "aa47df8d-9857-4fd7-8840-4f2dc7120f79",
+  "contract_start_date": 1706520916000,
+  "contract_end_date": 1738143316000,
+  "payment_terms": "6",
+  "reporting_cycle": "3",
+  "name": "A1 Real Estate License Agreement",
+  "description": "a contract that allows the broker to use your name and likeness for advertising purposes",
+  "currency_code": "USD",
+  "contract_products": [
+    {
+      "product_id": "acf6a6e6-74f2-4b9d-a0bd-39fe39454285",
+      "start_date": 1706520916000,
+      "end_date": 1738143316000,
+      "contract_budget": {
+        "spend_limit_type": "5",
+        "spend_limit_amount": "10000000",
+        "number_of_periods": 1
+      },
+      "contract_pricing_details": {
+        "pricing_model_id": "7",
+        "pricing_model_amount": "1000"
+      },
+      "financial_info": [
+        {
+          "unit_offer_cost_type_id": "1",
+          "unit_offer_cost_amount": "100.000"
+        }
+      ]
+    }
+  ]
+}]

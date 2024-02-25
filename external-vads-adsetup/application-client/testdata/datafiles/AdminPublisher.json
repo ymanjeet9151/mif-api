@@ -1,0 +1,1405 @@
+{
+    "Id": "MIF-API-ADMIN-PUBLISHER-TEST",
+    "name": "MakeItFree Admin Publisher Automation Tests",
+    "type": "FUNCTIONAL",
+    "testList": [
+        {
+            "test_name": "User able to Creates Admin Publisher account",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin Publisher",
+                    "args": [
+                        {
+                            "user_first_name": "Demo",
+                            "user_last_name": "publisher",
+                            "site_url": "www.demopub.com",
+                            "publisher_name": "demopub",
+                            "expected_traffic_monthly_unique_count": 5,
+                            "primary_contact_address": {
+                                "address_1": "83729",
+                                "address_2": "Nitzsche Locks Suite 611",
+                                "city": "Lake Marianaville",
+                                "zipcode": "30820",
+                                "state": "Oregon",
+                                "province": "abc",
+                                "country": "USA"
+                            },
+                            "language": "English",
+                            "country_code": "US",
+                            "primary_contact_name": "string",
+                            "primary_contact_email": "string",
+                            "primary_contact_phone": "string",
+                            "client_business_type": "PUBLISHER",
+                            "preferred_currency_code": "USD",
+                            "agree_terms_of_service": true,
+                            "is_marketingEmail": true,
+                            "user_email": "manjeet.yadav@impressico.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "User creates the admin publisher",
+                    "args": [
+                        "/v1/admin/publisher/add",
+                        "200",
+                        "Create-Admin-publisher.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin publisher",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Cannot Creates Admin Publisher as new user by passing dulicate values",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "title": "Bad Request"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "user_first_name": "me",
+                            "user_last_name": "manjeet",
+                            "site_url": "www.siteurl.com",
+                            "publisher_name": "demopub",
+                            "expected_traffic_monthly_unique_count": 5,
+                            "primary_contact_address": {
+                                "address_1": "83729",
+                                "address_2": "Nitzsche Locks Suite 611",
+                                "city": "Lake Marianaville",
+                                "zipcode": "30820",
+                                "state": "Oregon",
+                                "province": "abc",
+                                "country": "USA"
+                            },
+                            "sec2_contact_address": {
+                                "primary_contact_email": "manjeet.yadav@impressico.com",
+                                "primary_contact_name": "9999999999"
+                            },
+                            "client_business_type": "PUBLISHER",
+                            "preferred_currency_code": "USD",
+                            "agree_terms_of_service": true,
+                            "is_marketingEmail": true,
+                            "user_email": "manjeet.yadav@impressico.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/add",
+                        "400",
+                        "title"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Cannot Creates Admin Publisher as new user by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "title": "Bad Request"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "user_first_name": null,
+                            "user_last_name": "publisher",
+                            "site_url": "www.demopub.com",
+                            "publisher_name": "demopub",
+                            "expected_traffic_monthly_unique_count": 5,
+                            "primary_contact_address": {
+                                "address_1": "83729",
+                                "address_2": "Nitzsche Locks Suite 611",
+                                "city": "Lake Marianaville",
+                                "zipcode": "30820",
+                                "state": "Oregon",
+                                "province": "abc",
+                                "country": "USA"
+                            },
+                            "sec2_contact_address": {
+                                "primary_contact_email": "manjeet.yadav@impressico.com",
+                                "primary_contact_name": "9999999999"
+                            },
+                            "client_business_type": "PUBLISHER",
+                            "preferred_currency_code": "USD",
+                            "agree_terms_of_service": true,
+                            "is_marketingEmail": true,
+                            "user_email": "manjeet.yadav@impressico.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/add",
+                        "400",
+                        "title"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Cannot Creates Admin Publisher as new user by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "title": "Bad Request"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "user_first_name": "Demo",
+                            "user_last_name": "publisher",
+                            "site_url": "www.demopub.com",
+                            "publisher_name": "demopub",
+                            "expected_traffic_monthly_unique_count": 5,
+                            "primary_contact_address": {
+                                "address_1": "83729",
+                                "address_2": "Nitzsche Locks Suite 611",
+                                "city": "Lake Marianaville",
+                                "zipcode": "30820",
+                                "state": "Oregon",
+                                "province": "abc",
+                                "country": "USA"
+                            },
+                            "sec2_contact_address": {
+                                "primary_contact_email": "manjeet.yadav@impressico.com",
+                                "primary_contact_name": "9999999999"
+                            },
+                            "client_business_type": "PUBLISHER",
+                            "preferred_currency_code": "USD",
+                            "agree_terms_of_service": true,
+                            "is_marketingEmail": true,
+                            "user_email": "manjeet.yadav@impressico.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/add",
+                        "400",
+                        "title"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve account details of admin Publisher with publisher ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User get the account id for admin publisher",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the admin Publisher data with publisher & user ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Get Call Admin Publisher Get The Information",
+                    "args": [
+                        "200",
+                        "Get-by-id-admin-publisher.json",
+                        "get_admin_publisher_user"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the admin Publisher user data by user ID As Admin",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin publisher updates",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "update-admin-publisher.json",
+                        "admin_publisher_update"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin Publisher user data As Admin with duplicate value",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin publisher updates",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "update-admin-publisher.json",
+                        "admin_publisher_update"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User cannot Update the Admin Publisher Existing user data with user ID As Admin by removing mendetory field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "error": "Internal Server Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": []
+                },
+                {
+                    "name": "User updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                        "200",
+                        "error"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User cannot Update the Admin Publisher Existing user data with user ID As Admin by giving the incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "error": "Internal Server Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": []
+                },
+                {
+                    "name": "User updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                        "200",
+                        "error"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the data of Admin Publisher users",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User GET all admin publisher data",
+                    "args": [
+                        "/v1/admin/publisher/publishers?ps=20&pn=1",
+                        "200",
+                        "Get-all-admin-publisher.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates Admin Publisher Contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin Publisher Contract",
+                    "args": [
+                        {
+                            "publisher_id": "",
+                            "contract_effective_date": 1700118557000,
+                            "contract_end_date": 1731740957000,
+                            "payment_terms": "1",
+                            "reporting_cycle": "2",
+                            "name": "contrdact",
+                            "description": "desctoon",
+                            "publication_name": "publihcc",
+                            "pricing_details": {
+                                "currency_code": "USD",
+                                "payment_pricing_model_id": "7",
+                                "unit_offer_delivery_payment_amount": "1000000.00"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates Admin Publisher Contract",
+                    "args": [
+                        "201",
+                        "create-Admin-Publisher-Contract.json"
+                    ]
+                },
+                {
+                    "name":"User set the Variables for admin publisher contract",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates Admin Publisher Contract as new user by duplicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "name": "contract"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "publisher_id": "fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                            "contract_effective_date": 1695367171,
+                            "contract_end_date": 1726989571,
+                            "payment_terms": "5",
+                            "reporting_cycle": "5",
+                            "name": "contract",
+                            "description": "descp",
+                            "publication_name": "publi_name",
+                            "pricing_details": {
+                              "currency_code": "USD",
+                              "payment_pricing_model_id": "2",
+                              "unit_offer_delivery_payment_amount": "1000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/contract",
+                        "201",
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User connot Creates Admin Publisher Contract as new user by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "error": "Internal Server Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "publisher_id": "fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                            "contract_effective_date": 1695367171,
+                            "contract_end_date": 1726989571,
+                            "payment_terms": "5",
+                            "reporting_cycle": "5",
+                            "name": "contract",
+                            "description": "descp",
+                            "publication_name": "publi_name",
+                            "pricing_details": {
+                              "currency_code": "USD",
+                              "payment_pricing_model_id": "2",
+                              "unit_offer_delivery_payment_amount": "1000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/contract",
+                        "401",
+                        "error"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User connot Creates Admin Publisher Contract as new user by incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                           "error" : "Internal Server Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "publisher_id": "fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                            "contract_effective_date": 1695367171,
+                            "contract_end_date": 1726989571,
+                            "payment_terms": "5",
+                            "reporting_cycle": "5",
+                            "name": "contract",
+                            "description": "descp",
+                            "publication_name": "publi_name",
+                            "pricing_details": {
+                              "currency_code": "USD",
+                              "payment_pricing_model_id": "2",
+                              "unit_offer_delivery_payment_amount": "1000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/contract",
+                        "401",
+                        "error"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the details of Admin Publisher contract using ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Get Call Admin Publisher Get The Information",
+                    "args": [
+                        "200",
+                        "get-by-id-admin-publihser-contract.json",
+                        "get_admin_publisher_contract"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the admin Publisher Contract for an Existing user'data by user ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin Publisher Contract update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "update-admin-publisher-contract.json",
+                        "get_admin_publisher_contract"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin Publisher Contract data with user ID As Admin by passing duplicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "name": "contract"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "publisher_id": "fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                            "contract_effective_date": 1696070629000,
+                            "contract_end_date": 1727693029000,
+                            "payment_terms": "5",
+                            "reporting_cycle": "5",
+                            "name": "contract",
+                            "description": "descp",
+                            "publication_name": "publi_name",
+                            "pricing_details": {
+                              "currency_code": "USD",
+                              "payment_pricing_model_id": "2",
+                              "unit_offer_delivery_payment_amount": "1000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/contract/e18ea06a-a966-4151-afe6-2a6d165c5af3",
+                        "200",
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User connot Update the admin Publisher Contract data with user ID As Admin by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "error": "Internal Server Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "publisher_id": "fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                            "contract_effective_date": 1696070629000,
+                            "contract_end_date": 1727693029000,
+                            "payment_terms": "5",
+                            "reporting_cycle": "5",
+                            "description": "descp",
+                            "publication_name": "publi_name",
+                            "pricing_details": {
+                              "currency_code": "USD",
+                              "payment_pricing_model_id": "2",
+                              "unit_offer_delivery_payment_amount": "1000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/contract/e18ea06a-a966-4151-afe6-2a6d165c5af3",
+                        "401",
+                        "error"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User connot Update the admin Publisher Contract data with user ID As Admin by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "name": "contract"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "publisher_id": "fb99d8e2-934d-4035-afc5-fcce36e36ada",
+                            "contract_effective_date": 1696070629000,
+                            "contract_end_date": 1727693029000,
+                            "payment_terms": "5",
+                            "reporting_cycle": "5",
+                            "name": "contract",
+                            "description": "descp",
+                            "publication_name": null,
+                            "pricing_details": {
+                              "currency_code": "USD",
+                              "payment_pricing_model_id": "2",
+                              "unit_offer_delivery_payment_amount": "1000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/contract/e18ea06a-a966-4151-afe6-2a6d165c5af3",
+                        "200",
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the admin Publisher Contract data",
+            "testRunEnabled": true,
+            "keywords": [
+              {
+                "name": "Get Call Admin Publisher Get The Information",
+                "args": [
+                    "200",
+                    "Get-all-admin-publisher-contract.json",
+                    "get_all_admin_publisher_contract"
+                ]
+              }
+            ]
+        },
+        {
+            "test_name": "User able to Confirm & Save Admin Publisher contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Confirm & Save the contract for admin Publisher",
+                    "args": [
+                        "200",
+                        "Confirm-Save-admin-publihser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Final Approves the Admin Publisher contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "status": "ACTIVE",
+                            "reason": "Change Status from pending to approved."
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "approve-final-admin-advertiser-contract.json",
+                        "admin_publisher_contract_approve_status"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates Admin Publisher content",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin Publisher content",
+                    "args": [
+                        {
+                            "topic_category": "2",
+                            "topic_category_from_publisher": "",
+                            "language": "English",
+                            "publisher_id": "9c13755e-f7cf-450b-915d-6f1c748ec2ab",
+                            "demography": {
+                              "gender": [
+                                1
+                              ],
+                              "age": [
+                                2
+                              ],
+                              "income": [
+                                3
+                              ],
+                              "tags": "#tags"
+                            },
+                            "publisher_content_id": "123",
+                            "content_url": "www.contentabc.com",
+                            "title": "titleabc",
+                            "description": "descabc",
+                            "author": "manjeetabc",
+                            "expected_traffic_monthly_unique_count": 2,
+                            "content_engagement_matrix": {
+                              "click_count": "2",
+                              "share_count": "2",
+                              "comment_count": "2",
+                              "like_count": "2"
+                            },
+                            "publication_start_date": 1699971225000,
+                            "publication_end_date": 1920896025000,
+                            "location": {
+                              "countries": [
+                                "1"
+                              ],
+                              "states": [
+                                "12"
+                              ],
+                              "regions": [
+                                "11"
+                              ]
+                            }
+                          }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Publisher Add The Information",
+                    "args": [
+                        "201",
+                        "create-Admin-Publisher-content.json",
+                        "admin_publisher_content"
+                    ]
+                },
+                {
+                    "name":"User set the Variables for admin publisher content",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates Admin Publisher content as new user by passing dulicate values ",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "title": "title_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "topic_category": "17",
+                            "topic_category_from_publisher": "",
+                            "language": "English",
+                            "publisher_id": "523ceb62-d2a5-4b1c-b67a-6c1b44894200",
+                            "demography": {
+                              "gender": [
+                                1
+                              ],
+                              "age": [
+                                8
+                              ],
+                              "income": [
+                                5
+                              ],
+                              "tags": "#tag"
+                            },
+                            "publisher_content_id": "123",
+                            "content_url": "www.content.com",
+                            "title": "title_manjeet",
+                            "description": "desc",
+                            "author": "manjeet",
+                            "expected_traffic_monthly_unique_count": 2,
+                            "content_engagement_matrix": {
+                              "click_count": "2",
+                              "share_count": "2",
+                              "comment_count": "2",
+                              "like_count": "2"
+                            },
+                            "publication_start_date": 1695466931000,
+                            "publication_end_date": 1695553331000,
+                            "location": {
+                              "countries": [
+                                "1"
+                              ],
+                              "states": [
+                                "22060"
+                              ],
+                              "regions": [
+                                "44051"
+                              ]
+                            }
+                          }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/content",
+                        "201",
+                        "title"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates Admin Publisher content as new user by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "error": "Internal Server Error"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "topic_category": "17",
+                            "topic_category_from_publisher": "",
+                            "language": "English",
+                            "publisher_id": "523ceb62-d2a5-4b1c-b67a-6c1b44894200",
+                            "demography": {
+                              "gender": [
+                                1
+                              ],
+                              "age": [
+                                8
+                              ],
+                              "income": [
+                                5
+                              ],
+                              "tags": "#tag"
+                            },
+                            "publisher_content_id": "123",
+                            
+                            "title": "title_manjeet",
+                            "description": "desc",
+                            "author": "manjeet",
+                            "expected_traffic_monthly_unique_count": 2,
+                            "content_engagement_matrix": {
+                              "click_count": "2",
+                              "share_count": "2",
+                              "comment_count": "2",
+                              "like_count": "2"
+                            },
+                            "publication_start_date": 1695466931000,
+                            "publication_end_date": 1695553331000,
+                            "location": {
+                              "countries": [
+                                "1"
+                              ],
+                              "states": [
+                                "22060"
+                              ],
+                              "regions": [
+                                "44051"
+                              ]
+                            }
+                          }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/content",
+                        "201",
+                        "error"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates Admin Publisher content as new user by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "title": "title_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "topic_category": "17",
+                            "topic_category_from_publisher": "",
+                            "language": "English",
+                            "publisher_id": "523ceb62-d2a5-4b1c-b67a-6c1b44894200",
+                            "demography": {
+                              "gender": [
+                                1
+                              ],
+                              "age": [
+                                8
+                              ],
+                              "income": [
+                                5
+                              ],
+                              "tags": "#tag"
+                            },
+                            "publisher_content_id": "123",
+                            "content_url": "www.content.com",
+                            "title": true,
+                            "description": "desc",
+                            "author": "manjeet",
+                            "expected_traffic_monthly_unique_count": 2,
+                            "content_engagement_matrix": {
+                              "click_count": "2",
+                              "share_count": "2",
+                              "comment_count": "2",
+                              "like_count": "2"
+                            },
+                            "publication_start_date": 1695466931000,
+                            "publication_end_date": 1695553331000,
+                            "location": {
+                              "countries": [
+                                "1"
+                              ],
+                              "states": [
+                                "22060"
+                              ],
+                              "regions": [
+                                "44051"
+                              ]
+                            }
+                          }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/content",
+                        "201",
+                        "title"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the details of Admin Publisher content using ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Get Call Admin Publisher Get The Information",
+                    "args": [
+                        "200",
+                        "Get-by-id-admin-publisher-content.json",
+                        "get_admin_publisher_content_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the admin Publisher content for user'data by user ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin Publisher content update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "update-admin-publisher-content.json",
+                        "get_admin_publisher_content_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin Publisher content for user'data with user ID As Admin by passing dulicate values",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "publisher_id": "523ceb62-d2a5-4b1c-b67a-6c1b44894200"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": []
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/content/aa1945d6-81d1-4ec4-9b09-a344828643eb",
+                        "200",
+                        "publisher_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin Publisher content for user'data with user ID As Admin by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "publisher_id": "523ceb62-d2a5-4b1c-b67a-6c1b44894200"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": []
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/content/aa1945d6-81d1-4ec4-9b09-a344828643eb",
+                        "200",
+                        "publisher_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin Publisher content for user'data with user ID As Admin by incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "publisher_id": "523ceb62-d2a5-4b1c-b67a-6c1b44894200"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": []
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/content/aa1945d6-81d1-4ec4-9b09-a344828643eb",
+                        "200",
+                        "publisher_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the admin Publisher content data",
+            "testRunEnabled": true,
+            "keywords": [
+              {
+                "name": "Get Call Admin Publisher Get The Information",
+                "args": [
+                  "200",
+                  "get-all-admin-publisher-content.json",
+                  "get_all_admin_publisher_content"
+                ]
+              }
+            ]
+        },
+        {
+            "test_name": "Validate User Upload content info for Admin Publisher content [get url and key]",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Resgister to an Application for upload content",
+                    "args": [
+                        "sample.csv",
+                        "200",
+                        "201"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Generate Sandbox Key link for Admin Publisher",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Generate Sandbox/Livesite Key for Admin Publisher",
+                    "args": [
+                        {
+                            "publisherId": "8058bd0a-602e-434e-9f3b-8be75b2d36b3",
+                            "site_url": "https://www.sandbox.com",
+                            "is_sandbox_acc": true
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Publisher Add The Information",
+                    "args": [
+                        "201",
+                        "Generates-Sandbox-Key-admin-publisher.json",
+                        "admin_publisher_sandbox_key"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin publisher Sandbox Key link",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Generate Livesite Key link for Admin Publisher",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Generate Sandbox/Livesite Key for Admin Publisher",
+                    "args": [
+                        {
+                            "publisherId": "8058bd0a-602e-434e-9f3b-8be75b2d36b3",
+                            "site_url": "https://www.Livesite.com",
+                            "is_sandbox_acc": false
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Publisher Add The Information",
+                    "args": [
+                        "201",
+                        "Generates-Livesite-Key-admin-publisher.json",
+                        "admin_publisher_sandbox_key"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin publisher Livesite Key link",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates SSO setup for Admin Publisher",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin Publisher SSO setup",
+                    "args": [
+                        {
+                            "modal_theme_id": "1",
+                            "font_size": 6,
+                            "sandbox_site_integration_url": "https://www.sandboxa.com",
+                            "sandbox_site_integration_start_date": "sandbox_site_integration_start_date",
+                            "live_site_url": "https://www.livesitedemoa.com",
+                            "live_site_integration_start_date": "live_site_integration_start_date",
+                            "header": "headerdata",
+                            "text": "textdata",
+                            "modal_status": "ACTIVE",
+                            "contract_id": "d5d16dad-0569-4992-8ac8-3446f4ae4234"
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Publisher Add The Information",
+                    "args": [
+                        "201",
+                        "create-admin-publisher-sso.json",
+                        "admin_publisher_sso"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin publisher SSO setup",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates SSO setup for Admin Publisher as new user with duplicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "live_site_url": "https://www.adclive.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": []
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/publisher/fb99d8e2-934d-4035-afc5-fcce36e36ada/model/setup/setting/{{setting_id}}",
+                        "201",
+                        "live_site_url"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the SSO setup for Admin Publisher using ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Get Call Admin Publisher Get The Information",
+                    "args": [
+                        "200",
+                        "get-by-id-admin-publisher-sso.json",
+                        "get_admin_publisher_sso_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the SSO setup for admin Publisher for Existing user data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin Publisher SSO setup update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "update-admin-publisher-sso.json",
+                        "get_admin_publisher_sso_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the SSO setup for admin Publisher users data with ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Get Call Admin Publisher Get The Information",
+                    "args": [
+                        "200",
+                        "get-all-admin-publisher-sso.json",
+                        "admin_publisher_sso"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to changes the status to Active for admin Publisher SSO setup",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "status": "ACTIVE"
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Publisher Update The Information",
+                    "args": [
+                        "200",
+                        "activate-sso-setup.json",
+                        "admin_publisher_activate"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the key status [sandbox] of admin Publisher",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "status": "INACTIVE"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates the status of an Admin publisher Sandbox/Livesite Key link",
+                    "args": [
+                        "200",
+                        "update-status-admin-publisher-sandbox-Key.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the key status [livesite] of admin Publisher",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "status": "INACTIVE"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates the status of an Admin publisher Sandbox/Livesite Key link",
+                    "args": [
+                        "200",
+                        "update-status-admin-publisher-livesite-Key.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Deletes SSO setup data for admin Publisher",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Publisher Delete The Information",
+                    "args": [
+                        "200",
+                        "deletes-admin-publisher-sso.json",
+                        "get_admin_publisher_sso_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Deletes admin Publisher content data by ID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Publisher Delete The Information",
+                    "args": [
+                        "200",
+                        "delete-admin-publisher-content.json",
+                        "get_admin_publisher_content_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes admin Publisher Contract data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Publisher Delete The Information",
+                    "args": [
+                        "200",
+                        "delete-admin-publisher-contract.json",
+                        "get_admin_publisher_contract"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to  Deletes Admin Publisher user' data by ID ",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Publisher Delete The Information",
+                    "args": [
+                        "200",
+                        "delete-admin-publisher.json",
+                        "admin_publisher_update"
+                    ]
+                }
+            ]
+        }
+    ]
+}

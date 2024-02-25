@@ -1,0 +1,171 @@
+{
+    "Id": "MIF-API-TEST",
+    "name": "MakeItFree Admin Report Automation Tests",
+    "type": "FUNCTIONAL",
+    "testList": [
+        {
+            "test_name": "User able to Fetch the Report Data for campaigns products offers",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "timeZone": "IST"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/campaigns/products/offers?ps=20&pn=1",
+                        "200",
+                        "Report-campaigns-products-offers.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for Admin Reports campaigns and Publisher Models",
+                    "args": [
+                        "Report-campaigns-products-offers.json",
+                        "campaign_products"
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload with filter",
+                    "args": ["campaigns_products_offers"]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/campaigns/products/offers?ps=20&pn=1",
+                        "200",
+                        "Report-campaigns-products-offers-filter.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Fetch the Report Data for Publisher Models",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "timeZone": "IST"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/publisher/models?ps=20&pn=1",
+                        "200",
+                        "Report-Publisher-Models.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for Admin Reports campaigns and Publisher Models",
+                    "args": [
+                        "Report-Publisher-Models.json",
+                        "modals"
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload with filter",
+                    "args": ["publisher_models"]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/publisher/models?ps=500&pn=1",
+                        "200",
+                        "Report-Publisher-Models.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Fetch the Report Data for publisher models email status",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "timeZone": "IST"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/publisher/models/email/status?ps=20&pn=1",
+                        "200",
+                        "Report-Publisher-Models-email-status.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for Admin Reports campaigns and Publisher Models",
+                    "args": [
+                        "Report-Publisher-Models-email-status.json",
+                        "emailStatusModals"
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload with filter",
+                    "args": ["publisher_models_email_status"]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/publisher/models/email/status?ps=20&pn=1",
+                        "200",
+                        "Report-Publisher-Models-email-status.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Fetch the Report Data for Publisher Models ads schedule",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "timeZone": "IST"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/publisher/model/ads/schedule?ps=20&pn=1",
+                        "200",
+                        "Report-Publisher-Models-ads-schedule.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for Admin Reports campaigns and Publisher Models",
+                    "args": [
+                        "Report-Publisher-Models-ads-schedule.json",
+                        "publisherModalAdSchedules"
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload with filter",
+                    "args": ["publisher_models_ads_schedule"]
+                },
+                {
+                    "name": "User Fetch the Report Data for campaigns products offers and Publisher Models",
+                    "args": [
+                        "/v1/admin/reports/publisher/models/email/status?ps=20&pn=1",
+                        "200",
+                        "Report-Publisher-Models-email-status.json"
+                    ]
+                }
+            ]
+        }
+    ]
+}

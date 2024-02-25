@@ -1,0 +1,2435 @@
+{
+    "Id": "MIF-API-TEST",
+    "name": "MakeItFree Admin Advertiser Automation Tests",
+    "type": "FUNCTIONAL",
+    "testList": [
+        {
+            "test_name": "Admin creates advertiser account.",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin advertiser",
+                    "args": [
+                        {
+                            "user_first_name": "Impressicotest",
+                            "user_last_name": "bussinesstest",
+                            "advertiser_name": "impressicotest",
+                            "preferred_currency_code": "USD",
+                            "industrial_classification_id": "1",
+                            "company_address": {
+                                "address_1": "86423",
+                                "address_2": "Yule Street",
+                                "city": "Arvada CO",
+                                "zipcode": "80007",
+                                "state": "London",
+                                "province": "london",
+                                "country": "USA"
+                            },
+                            "client_business_type": "ADERTISER",
+                            "agree_terms_of_service": true,
+                            "is_marketingEmail": true,
+                            "user_email": "manjeet.yadav+11@impressico.com",
+                            "site_url": "www.testingsitedemo.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "User creates the admin advertiser",
+                    "args": [
+                        "/v1/admin/advertiser/add",
+                        "200",
+                        "Creates-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "Creates-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser",
+                    "args": []
+                },
+                {
+                    "name": "User get the account id for admin advertiser",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Admin cannot create duplicate Admin Advertisers",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modifiying the Payload for Admin advertiser",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "User creates the admin advertiser",
+                    "args": [
+                        "/v1/admin/advertiser/add",
+                        "400",
+                        "duplicate-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "duplicate-Admin-Advertiser.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure Admin can not create Admin Advertisers using incorrect name field data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modifiying the Payload for Admin advertiser",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "User creates the admin advertiser",
+                    "args": [
+                        "/v1/admin/advertiser/add",
+                        "400",
+                        "incorrect-name-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-Admin-Advertiser.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot create an admin advertiser by removing its mandatory name field.",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modifiying the Payload for Admin advertiser",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "User creates the admin advertiser",
+                    "args": [
+                        "/v1/admin/advertiser/add",
+                        "400",
+                        "remove-mandt-field-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-Admin-Advertiser.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve the advertiser data by advertiserID",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get_advertiser_information.json",
+                        "get_user_account"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User updates Admin Advertiser",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin advertiser updates",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "Admin-advertiser-update.json",
+                        "update_advertiser"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true 
+                        },
+                        "Admin-advertiser-update.json"
+                    ]
+                },
+                {
+                    "name": "User set the variables for Admin advertiser updates",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate Admin cannot update duplicate Admin Advertisers",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser updates",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "duplicate-Admin-advertiser-update.json",
+                        "update_advertiser"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "duplicate-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot update advertiser with incorrect key name field data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser updates",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "incorrect-name-Admin-advertiser-update.json",
+                        "update_advertiser"
+                        
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User connot updates Admin Advertiser add by removing mandatory field",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser updates",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-Admin-advertiser-update.json",
+                        "update_advertiser"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve all the admin advertiser data.",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET all admin advertiser users for Nested data",
+                    "args": [
+                        "/v1/admin/advertiser/advertisers?ps=20&pn=1",
+                        "200",
+                        "Get-all-admin-advertiser-nested.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates the admin advertiser product",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser product",
+                    "args": [
+                        {
+                            "name": "OneplusDemonew",
+                            "produt_category_id": "6399",
+                            "related_tags": "Never Sattles Demo new",
+                            "brand_id": "bef0199d-4599-4255-b3f6-6a9b0a0bc0ce",
+                            "tagline": "Never Sattles demonew",
+                            "popularity_score": 2,
+                            "country_of_origin": "US",
+                            "is_active": true
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "201",
+                        "admin-advertiser-product.json",
+                        "advertiser_product"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "Creates-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser product",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate Admin cannot create duplicate Admin Advertisers product",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser product",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "400",
+                        "duplicate-admin-advertiser-product.json",
+                        "advertiser_product"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot create an admin advertiser product by removing mandatory name field",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser product",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-admin-advertiser-product.json",
+                        "advertiser_product"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot create an admin advertiser product by passing incorrect name field.",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser product",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "400",
+                        "incorrect-name-admin-advertiser-product.json",
+                        "advertiser_product"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve all the advertiser product details",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "GET-all-admin-advertiser-product.json",
+                        "advertiser_product_info"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to update the admin advertiser product",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser product update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "admin-advertiser-product-update.json",
+                        "advertiser_product_update"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "Creates-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "user set the variables for admin advertiser product update",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate Admin cannot update duplicate Admin Advertisers product",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser product update",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "duplicate-admin-advertiser-product-update.json",
+                        "advertiser_product_update"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot update advertiser product by removing mandatory field",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser product update",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-admin-advertiser-product-update.json",
+                        "advertiser_product_update"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot update advertiser product by passing incorrect key name field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser product update",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "incorrect-name-admin-advertiser-product-update.json",
+                        "advertiser_product_update"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-Admin-advertiser-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve the admin advertiser product by ID ",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-by-id-admin-advertiser-product.json",
+                        "advertiser_product_update"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to create admin advertiser contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin advertiser contract",
+                    "args": [
+                        {
+                            "contract_start_date": 1699623328000,
+                            "contract_end_date": 1731245728000,
+                            "payment_terms": "2",
+                            "reporting_cycle": "3",
+                            "name": "demo name",
+                            "description": "demo description",
+                            "currency_code": "USD",
+                            "contract_products": [
+                                {
+                                    "product_id": "463a8db2-1c00-4bb9-bcf6-afc3ea9e44f8",
+                                    "start_date": 1699623328000,
+                                    "end_date": 1731245728000,
+                                    "contract_budget": {
+                                        "spend_limit_type": "3",
+                                        "spend_limit_amount": "10000000",
+                                        "number_of_periods": 1
+                                    },
+                                    "contract_pricing_details": {
+                                        "pricing_model_id": "6",
+                                        "pricing_model_amount": "1000"
+                                    },
+                                    "financial_info": [
+                                        {
+                                            "unit_offer_cost_type_id": "1",
+                                            "unit_offer_cost_amount": "100.000"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "User creates the contract for Admin Advertiser",
+                    "args": [
+                        "201",
+                        "Creates-Admin-Advertiser-contract.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "Creates-Admin-Advertiser-contract.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser contract",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate Admin cannot create duplicate Admin Advertisers contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Modify the Payload for Admin advertiser contract",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "User creates the contract for Admin Advertiser",
+                    "args": [
+                        "400",
+                        "duplicate-admin-advertiser-contract.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "duplicate-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure Admin cannot create Admin Advertisers contract using incorrect name field data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Modify the Payload for Admin advertiser contract",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "User creates the contract for Admin Advertiser",
+                    "args": [
+                        "400",
+                        "incorrect-name-admin-advertiser-contract.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot create an admin advertiser contract by removing mandatory name field.",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Modify the Payload for Admin advertiser contract",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "User creates the contract for Admin Advertiser",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-admin-advertiser-contract.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve the admin advertiser contract data By using ID.",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "Get-all-admin-adveriser-contract.json",
+                        "contract"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User updates Admin Advertiser contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser contract updates",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "admin-advertiser-contract-update.json",
+                        "contract"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "admin-advertiser-contract-update.json"
+                    ]
+                },
+                {
+                    "name": "user set the variables for Admin Advertiser contract update",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate Admin cannot update duplicate Admin Advertisers contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract updates",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "duplicate-admin-advertiser-contract-update.json",
+                        "contract"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "duplicate-admin-advertiser-contract-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot update admin advertiser contract by removing mandatory field",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract updates",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-admin-advertiser-contract-update.json",
+                        "contract"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-admin-advertiser-contract-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot update admin advertiser contract with incorrect name key data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract updates",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "incorrect-name-admin-advertiser-contract-update.json",
+                        "contract"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-admin-advertiser-contract-update.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to confirm & save the advertiser contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User approves the contract for admin advertiser",
+                    "args": [
+                        "200",
+                        "approve-admin-advertiser-contract.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "approve-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User can not confirm & save duplicate Admin Advertisers contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract confirm & save",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "User confirm & save the contract for admin advertiser",
+                    "args": [
+                        "400",
+                        "duplicate-approve-admin-advertiser-contractSave&confirm.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "duplicate-approve-admin-advertiser-contractSave&confirm.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure Admin can not confirm & save by removing mandatory field",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract confirm & save",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "User confirm & save the contract for admin advertiser",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-admin-advertiser-contractSave&confirm.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-admin-advertiser-contractSave&confirm.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure Admin can not confirm & save by passing incorrect key field data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract confirm & save",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "User confirm & save the contract for admin advertiser",
+                    "args": [
+                        "400",
+                        "incorrect-name-admin-advertiser-contractSave&confirm.json"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-admin-advertiser-contractSave&confirm.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to do final approval for admin advertiser contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "status": "ACTIVE",
+                            "reason": "Change Status from pending to approved."
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "approve-final-admin-advertiser-contract.json",
+                        "contract_status"
+                    ]
+                },
+                {
+                    "name": "User Validates Positive Response",
+                    "args": [
+                        {
+                            "success": true
+                        },
+                        "Creates-Admin-Advertiser.json"
+                    ]
+                },
+                {
+                    "name": "user set the variables for Admin Advertiser contract final approval",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "User not able to do final approval for duplicate admin advertiser contract",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract final approve",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "dupliacte-approve-final-admin-advertiser-contract.json",
+                        "contract_status"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "dupliacte-approve-final-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot approve an advertiser contract by removing mandatory field",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract final approve",
+                    "args": ["removing mandatory field"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "remove-mandt-field-approve-final-admin-advertiser-contract.json",
+                        "contract_status"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "remove-mandt-field-approve-final-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Ensure admin cannot approve an advertiser contract by incorrect key field data",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User modify the Payload for Admin advertiser contract final approve",
+                    "args": ["incorrect field data"]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "400",
+                        "incorrect-name-approve-final-admin-advertiser-contract.json",
+                        "contract_status"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "incorrect-name-approve-final-admin-advertiser-contract.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to retrieve all the advertiser contract details.",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "Get-all-advertiser-contract.json",
+                        "contracts"
+
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates the admin advertiser contract product offerasset [Offer Logo]",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser contract product offerasset",
+                    "args": [
+                        {
+                            "advertiserId": "",
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "",
+                            "email_offer_text": "",
+                            "uploaded_url": "https://dev-product-ads.mifadnetwork.com/2cd176be-1882-46f4-a700-170cd345118d/content/2023-11-01T10:14:50.211Z-ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "201",
+                        "Offer-Logo-create-admin-advertiser-contract-product-offerasset.json",
+                        "contract_offerasset"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser contract product offerasset Offer Logo",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate Admin cannot create duplicate Admin advertiser contract product offer asset [Offer Logo]",
+            "testRunEnabled": true,
+            "keywords": [
+                {
+                    "name": "User Modify the Payload for admin advertiser contract product offerasset",
+                    "args": ["duplicate"]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "400",
+                        "duplicate-Offer-Logo-create-admin-advertiser-contract-product-offerasset.json",
+                        "contract_offerasset"
+                    ]
+                },
+                {
+                    "name": "User Validates Negative Response",
+                    "args": [
+                        {
+                            "title": "Not Found",
+                            "failure_code": "PRODUCT_CATEGORY_NOT_FOUND",
+                            "message": "0"
+                        },
+                        "duplicate-Offer-Logo-create-admin-advertiser-contract-product-offerasset.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates the admin advertiser contract product offerasset [Email Offer Image]",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser contract product offerasset",
+                    "args": [
+                        {
+                            "advertiserId": "0bc5b554-6fc9-4769-b0e0-8527807068c2",
+                            "asset_type_id": 3,
+                            "asset_size_id": 1,
+                            "offer_logo_name": "logo_name_demo",
+                            "email_offer_text": "",
+                            "uploaded_url": "https://dev-product-ads.mifadnetwork.com/0bc5b554-6fc9-4769-b0e0-8527807068c2/content/2023-11-03T07:53:42.453Z-Hims_HardMints_OFFER_071223.png",
+                            "click_link_destination_url": "https://www.clicklink.com"
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "201",
+                        "email-create-admin-advertiser-contract-product-offerasset.json",
+                        "contract_offerasset"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser contract product offerasset Email Offer Image",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates the admin advertiser contract product offerasset by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "offer_logo_name": "logo_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "logo_manjeet",
+                            "email_offer_text": "Exclusive Offer Alert! Get 31% off on our improve! Hurry, this offer expires on November 23, 2023. Visit our website now! Happy Shopping!",
+                            "click_link_destination_url": "https://stage-product-ads.mifadnetwork.com/ad5.png",
+                            "uploaded_url": "https://stage-product-ads.mifadnetwork.com/ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/772768d9-94c1-494d-be42-e3bc6ad45ef6/contract/product/offer/offerasset",
+                        "201",
+                        "offer_logo_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates the admin advertiser contract product offerasset by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "offer_logo_name": "logo_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "logo_manjeet",
+                            "email_offer_text": "manjeet",
+                            "click_link_destination_url": "https://stage-product-ads.mifadnetwork.com/ad5.png",
+                            "uploaded_url": "https://stage-product-ads.mifadnetwork.com/ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/772768d9-94c1-494d-be42-e3bc6ad45ef6/contract/product/offer/offerasset",
+                        "201",
+                        "offer_logo_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates the admin advertiser contract product offerasset by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "offer_logo_name": "logo_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "logo_manjeet",
+                            "email_offer_text": "manjeet",
+                            "click_link_destination_url": "https://stage-product-ads.mifadnetwork.com/ad5.png",
+                            "uploaded_url": "https://stage-product-ads.mifadnetwork.com/ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/772768d9-94c1-494d-be42-e3bc6ad45ef6/contract/product/offer/offerasset",
+                        "201",
+                        "offer_logo_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the admin advertiser contract product offerasset details by ID",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-by-id-admin-advertiser-contract-product-offerasset.json",
+                        "contract_product_offerasset"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the admin advertiser contract product offerasset",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser contract product offerasset update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "offer_logo_name",
+                        "update-admin-advertiser-contract-product-offerasset.json",
+                        "contract_product_offerasset"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin advertiser contract product offerasset for an Existing user'data by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "logo_manjeet",
+                            "email_offer_text": "manjeetme",
+                            "click_link_destination_url": "https://stage-product-ads.mifadnetwork.com/ad5.png",
+                            "uploaded_url": "https://stage-product-ads.mifadnetwork.com/ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/contract/product/offer/offerasset/df3cc762-3824-48c8-af89-c38a0386689e",
+                        "200",
+                        "offer_logo_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin advertiser contract product offerasset for an Existing user'data by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "offer_logo_name": "logo_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "logo_manjeet",
+                            "email_offer_text": "manjeetme",
+                            "click_link_destination_url": "https://stage-product-ads.mifadnetwork.com/ad5.png",
+                            "uploaded_url": "https://stage-product-ads.mifadnetwork.com/ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/contract/product/offer/offerasset/df3cc762-3824-48c8-af89-c38a0386689e",
+                        "200",
+                        "offer_logo_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin advertiser contract product offerasset for an Existing user'data by user ID by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "offer_logo_name": "logo_manjeet"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "asset_type_id": "2",
+                            "asset_size_id": "2",
+                            "offer_logo_name": "logo_manjeet",
+                            "email_offer_text": "manjeetme",
+                            "click_link_destination_url": "https://stage-product-ads.mifadnetwork.com/ad5.png",
+                            "uploaded_url": "https://stage-product-ads.mifadnetwork.com/ad5.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/contract/product/offer/offerasset/df3cc762-3824-48c8-af89-c38a0386689e",
+                        "200",
+                        "offer_logo_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates the admin advertiser product offer ads",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser product ads",
+                    "args": [
+                        {
+                            "advertiserId": "0bc5b554-6fc9-4769-b0e0-8527807068c2",
+                            "product_id": "5f3e8211-1557-4824-a7a9-13af684c6989",
+                            "ads_offer_name": "offerabc",
+                            "ads_offer_desc": "desctabc",
+                            "ad_type": "EMAIL_OFFER",
+                            "offer_assets": [
+                                "08ea4216-0fe6-4e45-aac4-d1682293fb34",
+                                "f76bfd03-d065-44a8-94ee-9bbd50aaa198"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "201",
+                        "create-admin-advertiser-product-offer-ads.json",
+                        "product_ad_url"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser product offer ads",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates the admin advertiser product offer ads by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "ads_offer_name": "demo"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "product_id": "f626369c-5cc9-42b3-a898-97e812555da5",
+                            "offer_assets": [
+                                "string"
+                            ],
+                            "ads_offer_name": "demo",
+                            "ads_offer_desc": "discription",
+                            "ad_type": "ADVERTISER"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/product/ad",
+                        "201"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates the admin advertiser product offer ads by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "ads_offer_name": "demo"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "product_id": "f626369c-5cc9-42b3-a898-97e812555da5",
+                            "offer_assets": [
+                                "string"
+                            ],
+                            "ads_offer_name": "demo",
+                            "ads_offer_desc": "discription",
+                            "ad_type": "ADVERTISER"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/product/ad",
+                        "201"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates the admin advertiser product offer ads by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "ads_offer_name": "demo"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "product_id": "f626369c-5cc9-42b3-a898-97e812555da5",
+                            "offer_assets": [
+                                "string"
+                            ],
+                            "ads_offer_name": "demo",
+                            "ads_offer_desc": "discription",
+                            "ad_type": "ADVERTISER"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/product/ad",
+                        "201"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the admin advertiser product offer ads using advertiser id and product id",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-all-product-id-Admin-advertiser-product-offer-ads.json",
+                        "product_ads_for_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the admin advertiser product offer ads",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser product offer ads update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "ads_offer_name",
+                        "update-admin-advertiser-product-offer-ads.json",
+                        "product_ads_update"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin advertiser product offer ads by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "ads_offer_name": "demo"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "product_id": "f626369c-5cc9-42b3-a898-97e812555da5",
+                            "offer_assets": [
+                                "string"
+                            ],
+                            "ads_offer_name": "demo",
+                            "ads_offer_desc": "description",
+                            "ad_type": "ADVERTISER"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/product/f626369c-5cc9-42b3-a898-97e812555da5",
+                        "200",
+                        "ads_offer_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin advertiser product offer ads by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "ads_offer_name": "demo"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "product_id": "f626369c-5cc9-42b3-a898-97e812555da5",
+                            "offer_assets": [
+                                "string"
+                            ],
+                            "ads_offer_name": "demo",
+                            "ads_offer_desc": "description",
+                            "ad_type": "ADVERTISER"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/product/f626369c-5cc9-42b3-a898-97e812555da5",
+                        "200",
+                        "ads_offer_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the admin advertiser product offer ads by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "ads_offer_name": "demo"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "product_id": "f626369c-5cc9-42b3-a898-97e812555da5",
+                            "offer_assets": [
+                                "string"
+                            ],
+                            "ads_offer_name": "demo",
+                            "ads_offer_desc": "description",
+                            "ad_type": "ADVERTISER"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/248e7d73-60b2-4645-a0b9-192ce976516e/product/f626369c-5cc9-42b3-a898-97e812555da5",
+                        "200",
+                        "ads_offer_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the Status of admin advertiser product offer ads",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "active": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User updates an Existing data for advertiser",
+                    "args": [
+                        "success",
+                        "200",
+                        "update-status-admin-advertiser-product-offer-ads.json"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for changing status of admin advertiser product offer ads",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the Admin advertiser product offer ads using Product Ads ID",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-by-id-Admin-advertiser-product-offer-ads.json",
+                        "product_ad"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the advertiser product offer ads details using advertiser ID",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-all-advertiser-product-offer-ads-nested.json",
+                        "product_ads"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Creates admin advertiser campagin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for admin advertiser campagin",
+                    "args": [
+                        {
+                            "name": "camp",
+                            "start_date": 1699875129000,
+                            "end_date": 1707762600000,
+                            "description": "description",
+                            "total_budget_amt": 600000,
+                            "spend_limit_period_type": "2",
+                            "number_of_periods": 6,
+                            "spend_limit_amt": 100000,
+                            "is_active": true,
+                            "is_save_and_confirm": true
+                        }
+                    ]
+                },
+                {
+                    "name": "Post Call Admin Advertiser Add The Information",
+                    "args": [
+                        "201",
+                        "admin-advertiser-campagin.json",
+                        "campaign_url"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for admin advertiser campagin",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates admin advertiser campagin by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "id": "ce520a94-3e9e-426d-a13e-28e0846cc2b2"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "name": "new_campaign1",
+                            "description": "desc"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign",
+                        "201",
+                        "id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates admin advertiser campagin by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "id": "ce520a94-3e9e-426d-a13e-28e0846cc2b2"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "name": "new_campaign1",
+                            "description": "desc"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign",
+                        "201",
+                        "id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Creates admin advertiser campagin by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "id": "ce520a94-3e9e-426d-a13e-28e0846cc2b2"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "name": "new_campaign1",
+                            "description": "desc"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Resgister to an Application",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign",
+                        "201",
+                        "id"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve the admin advertiser campaign details with ID",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-by-id-admin-advertiser-campagin.json",
+                        "campaign_info"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User ables to updates Admin Advertiser campaign",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for Admin Advertiser campagin update",
+                    "args": []
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "name",
+                        "update-admin-advertiser-campagin.json",
+                        "campaign_info"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User updates Admin Advertiser campagin by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "name": "new_campaign"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "name": "new_campaign",
+                            "start_date": 1697020342000,
+                            "end_date": 1728642742000,
+                            "description": "desc",
+                            "total_budget_amt": 100,
+                            "spend_limit_period_type": null,
+                            "number_of_periods": 1,
+                            "spend_limit_amt": 100,
+                            "is_active": false,
+                            "is_save_and_confirm": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign/ce520a94-3e9e-426d-a13e-28e0846cc2b2",
+                        "200",
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User updates Admin Advertiser campagin by removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "name": "new_campaign"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "name": "new_campaign",
+                            "start_date": 1697020342000,
+                            "end_date": 1728642742000,
+                            "description": "desc",
+                            "total_budget_amt": 100,
+                            "spend_limit_period_type": null,
+                            "number_of_periods": 1,
+                            "spend_limit_amt": 100,
+                            "is_active": false,
+                            "is_save_and_confirm": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign/ce520a94-3e9e-426d-a13e-28e0846cc2b2",
+                        "200",
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User updates Admin Advertiser campagin by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "name": "new_campaign"
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "name": "new_campaign",
+                            "start_date": 1697020342000,
+                            "end_date": 1728642742000,
+                            "description": "desc",
+                            "total_budget_amt": 100,
+                            "spend_limit_period_type": null,
+                            "number_of_periods": 1,
+                            "spend_limit_amt": 100,
+                            "is_active": false,
+                            "is_save_and_confirm": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign/ce520a94-3e9e-426d-a13e-28e0846cc2b2",
+                        "200",
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to add the product to admin advertiser campaign",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload for add the product to admin advertiser campagin",
+                    "args": [
+                        {
+                            "campaign_id": "c704a6e6-f0b3-4fe4-87d3-a7e6bc819ced",
+                            "products": [
+                                {
+                                    "is_active": true,
+                                    "product_id": "355a6d43-5d67-4510-a4b5-6c6f7747d082",
+                                    "start_date": 1700006400000,
+                                    "end_date": 1701109800000,
+                                    "total_budget_amt": "2000",
+                                    "spend_limit_period_type": "1",
+                                    "number_of_periods": 2,
+                                    "spend_limit_amt": "1000",
+                                    "tags": null,
+                                    "active_offer_id": "4c5c839a-f4b3-4983-bb33-f8fa2ca2efdb",
+                                    "location": {
+                                        "countries": [
+                                            "1"
+                                        ],
+                                        "states": null,
+                                        "regions": null
+                                    },
+                                    "demography": []
+                                }
+                            ],
+                            "advertiserId": "aa9ca632-7a9a-4353-9f59-a239f93b9898"
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "id",
+                        "add-the-product-to-admin-advertiser-campagin.json",
+                        "add_product_to_campaign"
+                    ]
+                },
+                {
+                    "name": "User set the Variables for add the product to admin advertiser campagin",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "test_name": "User able to  save and confirm the admin advertiser campaign",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "is_save_and_confirm": true
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "id",
+                        "save-and-confirm-admin-advertiser-campagin.json",
+                        "campaign_info"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the admin advertiser campagin data.",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-all-admin-advertiser-campagin.json",
+                        "all_campaigns"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Retrieve all the Admin Advertiser Campaign Product promotion details data.",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "GET Call Admin Advertiser Get The Information",
+                    "args": [
+                        "200",
+                        "get-all-Admin-Advertiser-Campaign-Product-promotion.json",
+                        "campaign_product_promotion"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Update the Admin Advertiser Campaign Product promotion for Existing user data by user ID",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "promotion_type_id": "1",
+                            "promotion_email_count": 1,
+                            "promotion_value_amount": "",
+                            "payment_amount_received": "1",
+                            "promotion_email_delivery_count": "1",
+                            "payment_email_delivery_count": "1",
+                            "modal_display_priority": "3"
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "update-Admin-Advertiser-Campaign-Product-promotion.json",
+                        "campaign_product_promotion"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the Admin Advertiser Campaign Product promotion for Existing user data by passing dulicate data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "success": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "promotion_type_id": "2",
+                            "promotion_email_count": 0,
+                            "promotion_value_amount": 0,
+                            "payment_amount_received": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign/{{campaign_id}}/product/{{product_id}}/promotion",
+                        "200",
+                        "success"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the Admin Advertiser Campaign Product promotion for Existing user data by Removing mandatory field",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "success": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "promotion_type_id": "2",
+                            "promotion_email_count": 0,
+                            "promotion_value_amount": 0,
+                            "payment_amount_received": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign/{{campaign_id}}/product/{{product_id}}/promotion",
+                        "200",
+                        "success"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Update the Admin Advertiser Campaign Product promotion for Existing user data by passing incorrect key field data",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Validate the Expected data",
+                    "args": [
+                        {
+                            "success": true
+                        }
+                    ]
+                },
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "promotion_type_id": "2",
+                            "promotion_email_count": 0,
+                            "promotion_value_amount": 0,
+                            "payment_amount_received": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "User Updates an Existing data As Admin",
+                    "args": [
+                        "/v1/admin/advertiser/13bd9d60-f002-4d60-bec2-cc5fa60d820b/campaign/{{campaign_id}}/product/{{product_id}}/promotion",
+                        "200",
+                        "success"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to publish the campaign for Admin Advertiser by ID",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User publish the campaign for Admin Advertiser",
+                    "args": [
+                        "200",
+                        "success",
+                        "Admin-Advertiser-campaign-publish.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "User able to Activate the campaign for Admin Advertiser",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "active": true
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "Activate-Admin-Advertiser-campaign.json",
+                        "campaign_status"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User change the status to false of campaign for Admin Advertiser",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "active": false
+                        }
+                    ]
+                },
+                {
+                    "name": "Put Call Admin Advertiser And Update The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "Deactivate-Admin-Advertiser-campaign.json",
+                        "campaign_status"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes Admin advertiser campagin data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Advertiser Delete The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "delete-admin-advertiser-campagin.json",
+                        "campaign_info"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User change the status to false of admin advertiser product offer ads",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "User Creates the Payload",
+                    "args": [
+                        {
+                            "active": false
+                        }
+                    ]
+                },
+                {
+                    "name": "User updates an Existing data for advertiser",
+                    "args": [
+                        "success",
+                        "200",
+                        "deactivate-update-status-admin-advertiser-product-offer-ads.json"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes admin Advertiser product offer ads data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Advertiser Delete The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "deletes-Advertiser-product-offer-ads-data.json",
+                        "product_ads_update"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes admin advertiser contract product offerasset data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Advertiser Delete The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "delete-admin-advertiser-contract-product-offerasset.json",
+                        "contract_product_offerasset"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes admin Advertiser product data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Advertiser Delete The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "delete-admin-Advertiser-product.json",
+                        "advertiser_product_update"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes Admin Advertiser contract data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Advertiser Delete The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "delete-admin-Advertiser-contract.json",
+                        "contract"
+                    ]
+                }
+            ]
+        },
+        {
+            "test_name": "Validate User Deletes Admin Advertriser user' data by ID As Admin",
+            "testRunEnabled": false,
+            "keywords": [
+                {
+                    "name": "Delete Call Admin Advertiser Delete The Information",
+                    "args": [
+                        "200",
+                        "success",
+                        "admin-advertiser-delete.json",
+                        "update_advertiser"
+                    ]
+                }
+            ]
+        }
+    ]
+}
